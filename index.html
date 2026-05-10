@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pavielle Goldman — For Calendly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,800;0,900;1,700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #7A9E7E;
+    --sage-deep:  #4A7050;
+    --sage-pale:  #EEF3EE;
+    --cream:      #F0EDE6;
+    --warm-white: #FAF8F5;
+    --ink:        #1A1A16;
+    --ink-mid:    #3D3D35;
+    --ink-light:  #7A7A6E;
+    --off-white:  #E2DDD5;
+    --condensed:  'Barlow Condensed', sans-serif;
+    --serif:      'Lora', Georgia, serif;
+    --body:       'Barlow', sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--ink);
+    font-family: var(--body);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 48px;
+  }
+  .nav-logo {
+    font-family: var(--condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .nav-tag {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-glyph {
+    position: absolute;
+    right: -0.04em;
+    bottom: -0.1em;
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: clamp(280px, 38vw, 560px);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--off-white);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    animation: fadeIn 1.4s 0.3s ease forwards;
+  }
+
+  .hero-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 130px 48px 52px;
+    position: relative;
+    z-index: 2;
+    max-width: 1160px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.4s ease forwards;
+  }
+
+  .hero-name {
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: clamp(68px, 13vw, 172px);
+    line-height: 0.87;
+    text-transform: uppercase;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s ease forwards;
+  }
+
+  .hero-name .line2 { color: var(--sage); display: block; }
+
+  .hero-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 52px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.65s ease forwards;
+  }
+
+  .hero-role {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-role::before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: var(--sage);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.8s ease forwards;
+  }
+
+  .hero-statement {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 24px);
+    line-height: 1.55;
+    color: var(--ink-mid);
+  }
+
+  .hero-statement strong { font-style: normal; color: var(--ink); font-weight: 600; }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+  }
+
+  .btn-sage {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sage);
+    color: #fff;
+    padding: 15px 32px;
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-sage:hover { background: var(--sage-deep); transform: translateY(-2px); }
+
+  .btn-scroll {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 12px;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    border: none;
+    border-bottom: 1px solid var(--off-white);
+    padding-bottom: 2px;
+    background: none;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-scroll:hover { color: var(--sage-deep); border-color: var(--sage); }
+
+  /* METRIC STRIP */
+  .metric-strip {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    z-index: 2;
+  }
+
+  .metric-cell {
+    padding: 30px 36px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .metric-cell:nth-child(1) { animation-delay: 0.9s; }
+  .metric-cell:nth-child(2) { animation-delay: 1.0s; }
+  .metric-cell:nth-child(3) { animation-delay: 1.1s; }
+  .metric-cell:nth-child(4) { animation-delay: 1.2s; border-right: none; }
+
+  .metric-num {
+    font-family: var(--condensed);
+    font-weight: 800;
+    font-size: 38px;
+    color: var(--sage);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .metric-label {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 11px;
+    color: rgba(255,255,255,0.42);
+    line-height: 1.5;
+  }
+
+  /* MARQUEE */
+  .marquee-bar {
+    background: var(--sage-pale);
+    border-top: 1px solid var(--off-white);
+    border-bottom: 1px solid var(--off-white);
+    padding: 12px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-item {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    padding: 0 36px;
+  }
+  .marquee-item::after { content: ' · '; opacity: 0.35; padding-left: 36px; }
+
+  /* LAYOUT */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 48px; }
+
+  .section {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--off-white);
+  }
+
+  .eyebrow {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 16px;
+  }
+
+  .section-heading {
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: clamp(40px, 6.5vw, 84px);
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 56px;
+  }
+  .section-heading em { font-style: italic; color: var(--sage); font-weight: 700; }
+
+  /* TWO TRUTHS */
+  .two-truths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 72px;
+  }
+  .truth-card { padding: 52px 48px; }
+  .truth-card:nth-child(1) { background: var(--cream); }
+  .truth-card:nth-child(2) { background: var(--sage); }
+  .truth-label {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 18px;
+  }
+  .truth-card:nth-child(2) .truth-label { color: rgba(255,255,255,0.55); }
+  .truth-body {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink-mid);
+  }
+  .truth-card:nth-child(2) .truth-body { color: rgba(255,255,255,0.92); }
+
+  /* PROOF GRID */
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+  }
+  .proof-card {
+    background: var(--cream);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .proof-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--sage);
+    transition: height 0.3s ease;
+  }
+  .proof-card:hover { background: var(--sage-pale); }
+  .proof-card:hover::before { height: 100%; }
+  .proof-co {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 14px;
+  }
+  .proof-headline {
+    font-family: var(--condensed);
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .proof-detail {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .proof-stat {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--sage);
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+  }
+
+  /* NARRATIVE */
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .narrative-sticky { position: sticky; top: 88px; }
+
+  .storyteller-card {
+    background: var(--sage);
+    color: #fff;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+  }
+  .storyteller-card .sc-label {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 8px;
+  }
+  .storyteller-card .sc-name {
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .role-list { display: flex; flex-direction: column; gap: 10px; }
+  .role-item {
+    font-family: var(--condensed);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .role-item::before {
+    content: '';
+    width: 14px; height: 1px;
+    background: var(--sage);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .narrative-body p {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--ink-mid);
+    margin-bottom: 28px;
+  }
+  .narrative-body p strong { font-weight: 500; color: var(--ink); }
+
+  .pull-quote {
+    margin: 44px 0;
+    padding: 32px 40px;
+    background: var(--cream);
+    border-left: 4px solid var(--sage);
+  }
+  .pull-quote p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px !important;
+    line-height: 1.55 !important;
+    color: var(--ink) !important;
+    margin: 0 !important;
+  }
+
+  /* FIT MAP */
+  .fit-header {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+  .fit-header-cell {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 11px 28px;
+  }
+  .fit-header-mid { background: var(--sage); }
+
+  .fit-rows { display: flex; flex-direction: column; gap: 3px; }
+  .fit-row {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr;
+    gap: 3px;
+  }
+  .fit-cell { padding: 28px; }
+  .fit-cell.ask { background: var(--cream); }
+  .fit-cell.answer { background: var(--warm-white); border: 1px solid var(--off-white); }
+  .fit-arrow {
+    background: var(--sage-pale);
+    border: 1px solid var(--off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sage-deep);
+    font-size: 16px;
+  }
+  .fit-label {
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 8px;
+  }
+  .fit-cell.answer .fit-label { color: var(--ink-light); }
+  .fit-text {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.72;
+    color: var(--ink-mid);
+  }
+
+  /* CTA */
+  .cta-section { padding: 120px 0; text-align: center; }
+  .cta-big {
+    font-family: var(--condensed);
+    font-weight: 900;
+    font-size: clamp(52px, 10vw, 120px);
+    line-height: 0.88;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .cta-big em { font-style: italic; color: var(--sage); display: block; }
+  .cta-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink-light);
+    max-width: 520px;
+    margin: 0 auto 52px;
+    line-height: 1.65;
+  }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-ink {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: #fff;
+    padding: 16px 36px;
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-ink:hover { background: var(--ink-mid); }
+
+  .btn-outline-sage {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--sage);
+    color: var(--sage-deep);
+    padding: 16px 36px;
+    font-family: var(--condensed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline-sage:hover { background: var(--sage); color: #fff; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .f-name {
+    font-family: var(--condensed);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  footer .f-tag {
+    font-family: var(--body);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--sage);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.12s; }
+  .reveal-d2 { transition-delay: 0.22s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px) {
+    nav { padding: 18px 24px; }
+    .hero-main { padding: 110px 24px 44px; }
+    .hero-bottom { grid-template-columns: 1fr; }
+    .hero-actions { align-items: flex-start; }
+    .metric-strip { grid-template-columns: 1fr 1fr; }
+    .metric-cell:nth-child(2) { border-right: none; }
+    .container { padding: 0 24px; }
+    .two-truths, .proof-grid, .narrative-grid { grid-template-columns: 1fr; }
+    .narrative-sticky { position: static; }
+    .fit-row { grid-template-columns: 1fr; }
+    .fit-arrow, .fit-header { display: none; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Pavielle Goldman</div>
+  <div class="nav-tag">For Calendly · Principal PMM</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-glyph">G</div>
+  <div class="hero-main">
+    <div class="hero-eyebrow">A case made for Calendly · Principal Product Marketing Manager</div>
+    <h1 class="hero-name">
+      Pavielle
+      <span class="line2">Goldman</span>
+    </h1>
+    <div class="hero-roles">
+      <div class="hero-role">Storyteller</div>
+      <div class="hero-role">Strategist</div>
+      <div class="hero-role">Facilitator</div>
+      <div class="hero-role">GTM Leader</div>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-statement">
+        You asked for someone who moves between <strong>up-front strategy</strong> and <strong>downstream GTM execution.</strong> I've been doing both — deliberately — for over a decade.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:pavielle.goldman@gmail.com?subject=Let%27s%20talk%20%E2%80%94%20Calendly%20PMM" class="btn-sage">↗ Let's talk</a>
+        <button class="btn-scroll" onclick="document.getElementById('case').scrollIntoView({behavior:'smooth'})">See the full case →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="metric-strip">
+    <div class="metric-cell">
+      <div class="metric-num">$300M</div>
+      <div class="metric-label">Revenue opportunity unlocked at Artsy through repositioning</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">30%</div>
+      <div class="metric-label">Publisher adoption growth after rebuilding GTM at Arity</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">17%</div>
+      <div class="metric-label">QoQ merchant retention lift at DoorDash</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">10+</div>
+      <div class="metric-label">Years owning both sides of the strategy ↔ execution dial</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item">Upstream Strategy</span>
+    <span class="marquee-item">GTM Execution</span>
+    <span class="marquee-item">Narrative Craft</span>
+    <span class="marquee-item">Product Discovery</span>
+    <span class="marquee-item">Cross-Functional Alignment</span>
+    <span class="marquee-item">Researcher Mindset</span>
+    <span class="marquee-item">Executive Storytelling</span>
+    <span class="marquee-item">Lifecycle & Channel</span>
+    <span class="marquee-item">Structure in Ambiguity</span>
+    <span class="marquee-item">PLG & Self-Serve</span>
+    <span class="marquee-item">Upstream Strategy</span>
+    <span class="marquee-item">GTM Execution</span>
+    <span class="marquee-item">Narrative Craft</span>
+    <span class="marquee-item">Product Discovery</span>
+    <span class="marquee-item">Cross-Functional Alignment</span>
+    <span class="marquee-item">Researcher Mindset</span>
+    <span class="marquee-item">Executive Storytelling</span>
+    <span class="marquee-item">Lifecycle & Channel</span>
+    <span class="marquee-item">Structure in Ambiguity</span>
+    <span class="marquee-item">PLG & Self-Serve</span>
+  </div>
+</div>
+
+<div class="container" id="case">
+
+  <!-- THE CASE -->
+  <section class="section">
+    <div class="eyebrow reveal">The case for Pavielle</div>
+    <h2 class="section-heading reveal">You wrote a job description.<br><em>I've been living it.</em></h2>
+
+    <div class="two-truths reveal">
+      <div class="truth-card">
+        <div class="truth-label">Calendly asks for</div>
+        <p class="truth-body">"Someone who can move comfortably between up-front strategy — insight → POV → decision — and downstream GTM execution — positioning → launch → adoption."</p>
+      </div>
+      <div class="truth-card">
+        <div class="truth-label">What Pavielle does</div>
+        <p class="truth-body">Shapes product narrative from early roadmap conversations, then owns the GTM stack from messaging house to in-product surface to lifecycle motion — and measures what lands.</p>
+      </div>
+    </div>
+
+    <div class="proof-grid reveal">
+      <div class="proof-card">
+        <div class="proof-co">Artsy · 2021–2023</div>
+        <div class="proof-headline">Shaped Direction Before the Brief Existed</div>
+        <p class="proof-detail">Partnered with Product Leadership early to define market problem, target audience, and differentiated value — influencing roadmap prioritization, not just launching its output. Two-sided marketplace, two customer sets, one coherent narrative.</p>
+        <span class="proof-stat">$300M revenue opportunity</span>
+      </div>
+      <div class="proof-card">
+        <div class="proof-co">DoorDash · 2021</div>
+        <div class="proof-headline">End-to-End GTM on a Tight Clock</div>
+        <p class="proof-detail">Redesigned onboarding flows and multi-channel merchant communications simultaneously — aligning narrative across every touchpoint from day one. Narrative-first, lifecycle-executed.</p>
+        <span class="proof-stat">17% QoQ retention lift</span>
+      </div>
+      <div class="proof-card">
+        <div class="proof-co">Arity / Allstate · 2017–2020</div>
+        <div class="proof-headline">Rebuilt Positioning From the Inside Out</div>
+        <p class="proof-detail">Rebuilt the entire PMM toolkit — messaging, enablement, channel strategy — and took full-funnel GTM ownership across a complex multi-product portfolio in close partnership with Product and Sales.</p>
+        <span class="proof-stat">30% publisher adoption growth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NARRATIVE -->
+  <section class="section">
+    <div class="narrative-grid">
+      <div class="narrative-sticky">
+        <div class="storyteller-card reveal">
+          <div class="sc-label">Pavielle Goldman is</div>
+          <div class="sc-name">A Story<br>teller.</div>
+        </div>
+        <div class="role-list reveal reveal-d1">
+          <div class="role-item">Facilitator</div>
+          <div class="role-item">GTM Strategist</div>
+          <div class="role-item">Explorer</div>
+          <div class="role-item">Caretaker</div>
+        </div>
+      </div>
+
+      <div class="narrative-body">
+        <p class="reveal">
+          I came up through a big company — Allstate — where I learned early that <strong>every product decision is also a communications decision.</strong> The gap between what you build and what customers actually understand is always a positioning problem. That stuck with me.
+        </p>
+        <p class="reveal reveal-d1">
+          At Artsy, I got to work at the sharpest edge of that problem: a two-sided marketplace where the seller's experience and the buyer's experience had to feel coherent, even though they were fundamentally different. I spent two years <strong>learning to hold those tensions</strong> — and to shape narratives that worked for both sides at once.
+        </p>
+
+        <div class="pull-quote reveal reveal-d2">
+          <p>Calendly is a product people return to because it removes friction from how they work. My job is to make sure they know exactly why — and feel the value before they even log in.</p>
+        </div>
+
+        <p class="reveal">
+          Through my consulting practice, I've built GTM infrastructure where none existed — in environments with no playbook, high stakes, and founders who needed a strategic partner as much as an executor. That work sharpened my ability to <strong>bring structure to ambiguity</strong>, something called out explicitly in your JD and one of my favorite parts of the craft.
+        </p>
+        <p class="reveal reveal-d1">
+          Outside of marketing, I facilitate writing workshops for caregivers — spaces where people reconnect with their voice and find language for what they already know. It's different work, same instinct: <strong>help people articulate what they already feel to be true.</strong> Good product marketing does exactly that.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIT MAP -->
+  <section class="section">
+    <div class="eyebrow reveal">Point by point</div>
+    <h2 class="section-heading reveal">Your requirements,<br><em>my receipts.</em></h2>
+
+    <div class="fit-header reveal">
+      <div class="fit-header-cell">Calendly asks for</div>
+      <div class="fit-header-cell fit-header-mid"></div>
+      <div class="fit-header-cell">Pavielle brings</div>
+    </div>
+
+    <div class="fit-rows reveal">
+      <div class="fit-row">
+        <div class="fit-cell ask">
+          <div class="fit-label">Strategic product influence</div>
+          <p class="fit-text">Shape product direction with Leadership — clarify market problem, target audience, and why it matters now. Define positioning and narrative early, not after the spec is written.</p>
+        </div>
+        <div class="fit-arrow">→</div>
+        <div class="fit-cell answer">
+          <div class="fit-label">Artsy · Goldman Guild</div>
+          <p class="fit-text">Entered roadmap conversations early at Artsy to define positioning before specs were finalized. Every consulting engagement starts the same way: audience targeting and market framing as the foundation, never the afterthought.</p>
+        </div>
+      </div>
+
+      <div class="fit-row">
+        <div class="fit-cell ask">
+          <div class="fit-label">Own high-impact GTM end to end</div>
+          <p class="fit-text">Lead go-to-market from planning through launch, adoption, and iteration. Own the GTM stack: in-product, lifecycle, web, enablement. Track impact through agreed metrics.</p>
+        </div>
+        <div class="fit-arrow">→</div>
+        <div class="fit-cell answer">
+          <div class="fit-label">Every role, every company</div>
+          <p class="fit-text">Designed, executed, and optimized full GTM at Artsy, DoorDash, and Arity — including channel mix, lifecycle sequencing, and performance-driven iteration. Never handed off after launch and walked away.</p>
+        </div>
+      </div>
+
+      <div class="fit-row">
+        <div class="fit-cell ask">
+          <div class="fit-label">Researcher mindset</div>
+          <p class="fit-text">Establish hypotheses, run learning loops with Growth, CS, and Research. Refine messaging based on market signal and customer feedback, especially for AI-driven capabilities.</p>
+        </div>
+        <div class="fit-arrow">→</div>
+        <div class="fit-cell answer">
+          <div class="fit-label">Built into how I work</div>
+          <p class="fit-text">At Artsy, synthesized competitive landscape and consumer behavior data into actionable frameworks used across the org. In consulting, every engagement is a hypothesis to pressure-test — not a brief to execute on faith.</p>
+        </div>
+      </div>
+
+      <div class="fit-row">
+        <div class="fit-cell ask">
+          <div class="fit-label">Drive cross-functional alignment</div>
+          <p class="fit-text">Serve as a senior cross-functional leader across Product, Brand, Support, Research, CS, and Growth. Facilitate executive reviews. Drive fast decisions that unlock momentum.</p>
+        </div>
+        <div class="fit-arrow">→</div>
+        <div class="fit-cell answer">
+          <div class="fit-label">Cross-functional by default</div>
+          <p class="fit-text">Every role has required building shared direction without direct authority — from Allstate's Leadership Development Program through Artsy's multi-team GTM coordination. I drive alignment through narrative clarity, not org chart position.</p>
+        </div>
+      </div>
+
+      <div class="fit-row">
+        <div class="fit-cell ask">
+          <div class="fit-label">Exceptional storytelling</div>
+          <p class="fit-text">Simplify complex concepts into clear, compelling narratives. High bar for craft and simplicity. Build core PMM assets with an exec-level standard for clarity and consistency.</p>
+        </div>
+        <div class="fit-arrow">→</div>
+        <div class="fit-cell answer">
+          <div class="fit-label">English Lit foundation · PMM craft</div>
+          <p class="fit-text">BA in English Literature from Notre Dame — trained in structure, economy, and how language actually lands with a reader. Applied daily to messaging frameworks, exec narratives, and positioning docs. This pitch page is one small example.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="eyebrow reveal" style="text-align:center; margin-bottom:20px;">Ready when you are</div>
+    <h2 class="cta-big reveal">
+      Let's find<br><em>30 minutes.</em>
+    </h2>
+    <p class="cta-sub reveal">I built this the way I'd build a positioning doc: lead with the problem, earn trust with proof, make the ask clear. Same energy in every room.</p>
+    <div class="cta-buttons reveal">
+      <a href="mailto:pavielle.goldman@gmail.com?subject=Let%27s%20talk%20%E2%80%94%20Calendly%20PMM" class="btn-ink">↗ pavielle.goldman@gmail.com</a>
+      <a href="tel:7734912346" class="btn-outline-sage">773.491.2346</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="f-name">Pavielle Goldman · Product Marketing Leader</div>
+  <div class="f-tag">Made for Calendly · 2026</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
